@@ -3,10 +3,9 @@
 // class to inherit
 class statblock
 {
-public:
-	stats damage;
+	stats damage;				//private variables
 	stats inteligence;
-
+public:							//construct
 	statblock()
 	{
 		damage = 1u;
@@ -17,6 +16,14 @@ public:
 	{
 		damage = dmg;
 		inteligence = intel;
+	}
+	stats getdamage() 
+	{
+		return damage;
+	}
+	stats getinteligence()
+	{
+		return inteligence;
 	}
 
 };

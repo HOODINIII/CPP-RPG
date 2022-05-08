@@ -143,6 +143,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HP.h" />
+    <ClInclude Include="Mage.h" />
+    <ClInclude Include="Preist.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="Stat_Type.h" />
     <ClInclude Include="knight.h" />

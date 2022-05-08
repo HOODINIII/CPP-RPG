@@ -12,4 +12,5 @@ public:
 		damage = 1u;
 		inteligence = 1u;
 	}
+
 };

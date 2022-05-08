@@ -26,4 +26,11 @@ public:							//construct
 		return inteligence;
 	}
 
+protected:
+	void inccreasestats(stats dmg, stats intel)
+	{
+		damage += dmg;
+		inteligence += intel;
+	}
+
 };

@@ -8,19 +8,16 @@ int main()
 	Mage mage1;
 	Preist preist1;
 
-	std::cout << "Knight\n"
-		<< "- MaxHP: " << knight1.getMaxhp() << '\n'
-		<< "- Damage: " << knight1.getdamage() << '\n'
-		<< "- Intelegence: " << knight1.getinteligence() << '\n';
-
-	std::cout << "Mage\n"
-		<< "- MaxHP: " << mage1.getMaxhp() << '\n'
-		<< "- Damage: " << mage1.getdamage() << '\n'
-		<< "- Intelegence: " << mage1.getinteligence() << '\n';
-
-	std::cout << "Preist\n"
-		<< "- MaxHP: " << preist1.getMaxhp() << '\n'
-		<< "- Damage: " << preist1.getdamage() << '\n'
-		<< "- Intelegence: " << preist1.getinteligence() << '\n';
+	for (int i = 0; i < 1; i++)
+	{
+		std::cout
+			<< "Knight" << " Level " << knight1.getCurrentlevel() << '\n'
+			<< "- EXP:" << knight1.getCurrentEXP() << "/" << knight1.getxpforlevelup() << '\n'
+			<< "- Max HP:" << knight1.getMaxhp() << '\n'
+			<< "- Damage:" << knight1.getdamage() << '\n'
+			<< "- Inteligence:" << knight1.getinteligence() << '\n';
+		knight1.EXPgain(100u);
+	}
+	
 	return 0;
 }

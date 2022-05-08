@@ -5,6 +5,8 @@
 
 typedef std::uint16_t hptype;
 typedef std::uint16_t stats; // uint8_t wont work with lower values as windows doesnt like it and produces random shapes.
+typedef std::uint64_t experience;
+typedef std::uint16_t Levels;
 
 
 

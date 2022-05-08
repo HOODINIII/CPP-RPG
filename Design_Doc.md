@@ -4,7 +4,7 @@ creating an turn based RPG game with different classes, leveling system, consuma
 
 
 ### **Classes**
-- Fighter –  High Damage, High HP
+- Knight –  High Damage, High HP
 
 - Mage – high damage, Low HP
 

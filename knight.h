@@ -22,7 +22,7 @@ public:
 
 private:
 	
-	void levellingup() override
+	void levellingup() override //activates pure virtual level function in "levelling.h" to change the stats of the characters as they increase in level.
 	{
 		setMaxhp(HPincrease + getMaxhp());
 		inccreasestats(dmgincrease, intelincrease);

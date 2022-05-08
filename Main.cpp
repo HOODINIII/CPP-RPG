@@ -16,7 +16,7 @@ int main()
 			<< "- Max HP:" << knight1.getMaxhp() << '\n'
 			<< "- Damage:" << knight1.getdamage() << '\n'
 			<< "- Inteligence:" << knight1.getinteligence() << '\n';
-		knight1.EXPgain(100u);
+			knight1.EXPgain(100u);
 	}
 	
 	return 0;

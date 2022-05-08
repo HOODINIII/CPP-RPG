@@ -49,7 +49,7 @@ protected:
 		if (CurrentEXP > xpforlevelup)
 		{
 			Currentlevel++;
-			levelingup(); //when leveled up the function should call pure virtual function
+			levellingup(); //when leveled up the function should call pure virtual function
 			xpforlevelup *= expmultiplyer;
 			return true;
 		}

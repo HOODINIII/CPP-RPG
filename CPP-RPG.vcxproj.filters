@@ -38,7 +38,7 @@
     <ClInclude Include="Preist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Leveling.h">
+    <ClInclude Include="Levelling.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

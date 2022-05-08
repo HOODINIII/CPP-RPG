@@ -1,5 +1,5 @@
 #pragma once
-#include "stats.h" // accessing "hptypes.h file
+#include "Stat_Type.h" // accessing "hptypes.h file
 
 class hp
 {

@@ -12,4 +12,5 @@ int main()
 		<< "- MaxHP: " << knight1.getMaxhp() << '\n'
 		<< "- Damage: " << knight1.getdamage() << '\n'
 		<< "- Intelegence: " << knight1.getinteligence() << '\n';
+	return 0;
 }

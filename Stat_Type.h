@@ -4,7 +4,7 @@
 // typedef is used to create a new name using an exsiting data type. this will allow me to use "hptypes" as a data type through out the code.
 
 typedef std::uint16_t hptype;
-typedef std::uint16_t stats; // 0 - 255 value
+typedef std::uint16_t stats; // uint8_t wont work with lower values as windows doesnt like it and produces random shapes.
 
 
 

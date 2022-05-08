@@ -48,7 +48,22 @@ public:
 		Currenthp += heal;
 	}
 
+	//constructor default
+	hp()
+	{
+		Currenthp = 1;
+		Maxhp = 1;
+	}
+	hp(hptype Chp, hptype Mhp)
+	{
+		Currenthp = Chp;
+		Maxhp = Mhp;
+		if (Currenthp > Maxhp)
+		{
+			Currenthp = Maxhp;
+		}
 
+	}
 
 private:
 	hptype Maxhp; 

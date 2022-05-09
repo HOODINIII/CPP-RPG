@@ -10,11 +10,11 @@ int main()
 			<< p1.getClassname()
 			<< " Level " << p1.getCurrentlevel() << '\n'
 			<< "- EXP:" << p1.getcurrentEXP() << '/' << p1.getxpforlevelup() << '\n'
-			<< "- HP:" << p1.getCurrentHP() << '/' << p1.getMaxHP() <<'\n'
+			<< "- HP:" << p1.getCurrentHP() << '/' << p1.getMaxHP() << '\n'
 			<< "- Damage:" << p1.getdamage() << '\n'
 			<< "- Inteligence:" << p1.getinteligence() << '\n';
-			p1.EXPgain(100u);
+		p1.EXPgain(100u);
 	}
-	
+
 	return 0;
 }

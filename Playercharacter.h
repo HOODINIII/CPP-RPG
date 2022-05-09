@@ -65,6 +65,8 @@ protected:
 	}
 };
 
+#define LEVELLING : Playercharacter() {HP->setMax(BaseHP); HP->increase(BaseHP); inccreasestats(Basedmg, Baseintel);} //using define macro so that we can use this code in any new classes without having to write up more code
+
 class knight :public Playercharacter
 {
 public:
@@ -73,12 +75,7 @@ public:
 	static const stats Baseintel = 20u;
 
 
-	knight() : Playercharacter()			 //each knight will start with similar stats
-	{
-		HP->setMax(BaseHP);
-		HP->increase(BaseHP);
-		inccreasestats(Basedmg, Baseintel);
-	}	
+	knight() LEVELLING;
 
 	std::string getClassname() override //make sure to name them right the next time so you dont have to spend time looking for errors. :(
 	{
@@ -102,12 +99,7 @@ public:
 	static const stats Baseintel = 50u;
 
 
-	Mage() :Playercharacter()	//each Mage will start with similar stats
-	{
-		HP->setMax(BaseHP);
-		HP->increase(BaseHP);
-		inccreasestats(Basedmg, Baseintel);
-	}
+	Mage() LEVELLING;
 
 	std::string getClassname() override
 	{
@@ -129,12 +121,7 @@ public:
 	static const stats Basedmg = 10u;					// Preist will spawn with hp of 100.
 	static const stats Baseintel = 70u;
 
-	Preist() :Playercharacter()	//each Preist will start with similar stats
-	{
-		HP->setMax(BaseHP);
-		HP->increase(BaseHP);
-		inccreasestats(Basedmg, Baseintel);
-	}
+	Preist() LEVELLING;
 
 	std::string getClassname() override
 	{

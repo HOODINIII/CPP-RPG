@@ -14,6 +14,8 @@ int main()
 			<< "- Damage:" << p1.getdamage() << '\n'
 			<< "- Mana:" << p1.getmanapool() << '\n'
 			<< "- energy:" << p1.getenergy() << '\n';
+
+
 		p1.EXPgain(100u);
 	}
 

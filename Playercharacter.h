@@ -1,8 +1,6 @@
 #pragma once
 #include "Stat.h"
-#include "Ability.h"
 #include <cstdint>
-#include <memory>
 #include <string>
 #include "Worldsetting.h"
 #include <vector>
@@ -45,7 +43,6 @@ public:
 	virtual void levellingup() = 0; // pure virtual functions allows the behaviour of the function to be changed in the derived classes.
 	virtual std::string getClassname() = 0;
 	std::unique_ptr<Worldsetting> HP;
-	std::vector <ability> abilities;
 
 protected:
 	int Maxlevels;
@@ -113,7 +110,6 @@ public:
 	Mage() : Playercharacter()
 	{
 		LEVELLING;
-		abilities.emplace_back();
 	}
 
 	std::string getClassname() override

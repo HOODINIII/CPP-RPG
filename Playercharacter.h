@@ -1,9 +1,11 @@
 #pragma once
 #include "Stat.h"
+#include "Ability.h"
 #include <cstdint>
 #include <memory>
 #include <string>
 #include "Worldsetting.h"
+#include <vector>
 typedef std::uint64_t experience;
 typedef std::uint16_t Levels;
 class Playercharacter : public statblock
@@ -42,7 +44,8 @@ public:
 
 	virtual void levellingup() = 0; // pure virtual functions allows the behaviour of the function to be changed in the derived classes.
 	virtual std::string getClassname() = 0;
-	std::unique_ptr<Worldsetting> HP; 
+	std::unique_ptr<Worldsetting> HP;
+	std::vector <ability> abilities;
 
 protected:
 	int Maxlevels;
@@ -65,7 +68,7 @@ protected:
 	}
 };
 
-#define LEVELLING : Playercharacter() {HP->setMax(BaseHP); HP->increase(BaseHP); inccreasestats(Basedmg, Baseintel, Baseeng, Basemanapool);} //using define macro so that we can use this code in any new classes without having to write up more code
+#define LEVELLING HP->setMax(BaseHP); HP->increase(BaseHP); inccreasestats(Basedmg, Baseintel, Baseeng, Basemanapool); //using define macro so that we can use this code in any new classes without having to write up more code
 //define macro for levelling up didnt end up working and would not solve no mater what I tried so I reverted to the previous code. hope to fix it in future.
 class knight :public Playercharacter
 {
@@ -77,7 +80,11 @@ public:
 	static const stats Basemanapool = 0u;
 
 
-	knight() LEVELLING;
+	knight() : Playercharacter()
+	{
+		LEVELLING;
+	}
+		
 
 	std::string getClassname() override //make sure to name them right the next time so you dont have to spend time looking for errors. :(
 	{
@@ -103,7 +110,11 @@ public:
 	static const stats Basemanapool = 100u;
 
 
-	Mage() LEVELLING;
+	Mage() : Playercharacter()
+	{
+		LEVELLING;
+		abilities.emplace_back();
+	}
 
 	std::string getClassname() override
 	{
@@ -116,6 +127,7 @@ private:
 		HP->increase((setting)(BaseHP / 2.f));
 		inccreasestats((stats)(Basedmg + 1u / 2.f),(stats)((Baseintel + 1u) / 2.f),(stats)(Baseeng + 1u / 2.f),(stats)((Basemanapool + 1u) / 2.f));
 	}
+
 };
 
 class Preist :public Playercharacter
@@ -127,7 +139,10 @@ public:
 	static const stats Baseeng = 20u;
 	static const stats Basemanapool = 80u;
 
-	Preist() LEVELLING;
+	Preist() : Playercharacter()
+	{
+		LEVELLING;
+	}
 
 	std::string getClassname() override
 	{

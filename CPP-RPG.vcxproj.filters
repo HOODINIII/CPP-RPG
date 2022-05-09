@@ -32,5 +32,8 @@
     <ClInclude Include="Playercharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Ability.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

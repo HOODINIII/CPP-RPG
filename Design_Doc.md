@@ -1,7 +1,7 @@
 # CPP-RPG
 
 Creating an turn based RPG game with different classes, leveling system, consumables and monster battles.
-
+Similar to DnD style game
 
 
 ### **Classes**

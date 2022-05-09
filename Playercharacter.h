@@ -51,7 +51,7 @@ protected:
 	experience xpforlevelup;
 
 
-	bool Check_level_up()			//check to see if the player has any pending levels
+	bool Checcheck_level_up()			//check to see if the player has any pending levels
 	{
 		static const Levels expmultiplyer = 2u; //xp multiplyer, times xp required by 2 everytime the player levels up.
 		if (CurrentEXP > xpforlevelup)

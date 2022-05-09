@@ -2,7 +2,7 @@
 #include "playercharacter.h"
 int main()
 {
-	player p1(new Mage());
+	player p1(new knight());
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -12,7 +12,8 @@ int main()
 			<< "- EXP:" << p1.getcurrentEXP() << '/' << p1.getxpforlevelup() << '\n'
 			<< "- HP:" << p1.getCurrentHP() << '/' << p1.getMaxHP() << '\n'
 			<< "- Damage:" << p1.getdamage() << '\n'
-			<< "- Inteligence:" << p1.getinteligence() << '\n';
+			<< "- Mana:" << p1.getmanapool() << '\n'
+			<< "- energy:" << p1.getenergy() << '\n';
 		p1.EXPgain(100u);
 	}
 

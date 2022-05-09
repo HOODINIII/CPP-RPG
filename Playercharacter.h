@@ -10,7 +10,7 @@ class Playercharacter : public statblock
 {
 public:
 	static const experience level2at = 100u; // xp required at level 2, xp require at level 3 with times this by 2 see below.
-	Playercharacter() : statblock(0u, 0u)
+	Playercharacter() : statblock(0u, 0u, 0u, 0u)
 	{
 		Currentlevel = 1u;
 		CurrentEXP = 0u;
@@ -65,14 +65,16 @@ protected:
 	}
 };
 
-#define LEVELLING : Playercharacter() {HP->setMax(BaseHP); HP->increase(BaseHP); inccreasestats(Basedmg, Baseintel);} //using define macro so that we can use this code in any new classes without having to write up more code
-//define macro for levelling up didnt end up working and would not solve no mater what i tried so i resolved to the previous code. hope to fix it in future.
+#define LEVELLING : Playercharacter() {HP->setMax(BaseHP); HP->increase(BaseHP); inccreasestats(Basedmg, Baseintel, Baseeng, Basemanapool);} //using define macro so that we can use this code in any new classes without having to write up more code
+//define macro for levelling up didnt end up working and would not solve no mater what I tried so I reverted to the previous code. hope to fix it in future.
 class knight :public Playercharacter
 {
 public:
 	static const setting BaseHP = 100u;				//using static constant to only intentiate once no matter the number of knights.
 	static const stats Basedmg = 60u;					// knights will spawn with hp of 100.
 	static const stats Baseintel = 20u;
+	static const stats Baseeng = 100u;
+	static const stats Basemanapool = 0u;
 
 
 	knight() LEVELLING;
@@ -87,7 +89,7 @@ private:
 	{
 		HP->setMax((setting)((BaseHP/2.f) + HP->getMax())); //inner brackets are done first.
 		HP->increase((setting)(BaseHP / 2.f));
-		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
+		inccreasestats((stats)(Basedmg + 1u / 2.f),(stats)((Baseintel + 1u) / 2.f),(stats)(Baseeng + 1u / 2.f),(stats)(Basemanapool + 1u / 2.f));
 	}
 };
 
@@ -97,6 +99,8 @@ public:
 	static const setting BaseHP = 100u;				//using static constant to only intentiate once no matter the number of Mage.
 	static const stats Basedmg = 50u;					// Mage will spawn with hp of 100.
 	static const stats Baseintel = 50u;
+	static const stats Baseeng = 0u;
+	static const stats Basemanapool = 100u;
 
 
 	Mage() LEVELLING;
@@ -110,7 +114,7 @@ private:
 	{
 		HP->setMax((setting)((BaseHP/2.f) + HP->getMax()));
 		HP->increase((setting)(BaseHP / 2.f));
-		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
+		inccreasestats((stats)(Basedmg + 1u / 2.f),(stats)((Baseintel + 1u) / 2.f),(stats)(Baseeng + 1u / 2.f),(stats)((Basemanapool + 1u) / 2.f));
 	}
 };
 
@@ -120,6 +124,8 @@ public:
 	static const setting BaseHP = 100u;				//using static constant to only intentiate once no matter the number of Preist.
 	static const stats Basedmg = 10u;					// Preist will spawn with hp of 100.
 	static const stats Baseintel = 70u;
+	static const stats Baseeng = 20u;
+	static const stats Basemanapool = 80u;
 
 	Preist() LEVELLING;
 
@@ -132,7 +138,7 @@ private:
 	{
 		HP->setMax((setting)((BaseHP/2.f) + HP->getMax()));
 		HP->increase((setting)(BaseHP / 2.f));
-		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
+		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f), (stats)(Baseeng + 1u / 2.f), (stats)((Basemanapool + 1u) / 2.f));
 	}
 };
 
@@ -154,6 +160,8 @@ public:
 	setting getMaxHP() { return pcclass->HP->getMax(); }
 	stats getdamage() { return pcclass->getdamage(); }
 	stats getinteligence() { return pcclass->getinteligence(); }
+	stats getmanapool() { return pcclass->getmanapool(); }
+	stats getenergy() { return pcclass->getenergy(); }
 	void EXPgain(experience amt) { return pcclass->EXPgain(amt); }
 	void damagetaken(setting amt) { return pcclass->HP->reduce(amt); }
 	void healing(setting amt) { return pcclass->HP->increase(amt); }

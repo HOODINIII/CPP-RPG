@@ -66,7 +66,7 @@ protected:
 };
 
 #define LEVELLING : Playercharacter() {HP->setMax(BaseHP); HP->increase(BaseHP); inccreasestats(Basedmg, Baseintel);} //using define macro so that we can use this code in any new classes without having to write up more code
-
+//define macro for levelling up didnt end up working and would not solve no mater what i tried so i resolved to the previous code. hope to fix it in future.
 class knight :public Playercharacter
 {
 public:
@@ -83,7 +83,7 @@ public:
 	}
 private:
 
-	void levellingup() override						//activates pure virtual level function in "levelling.h" to change the stats of the characters as they increase in level.
+	void levellingup() override					
 	{
 		HP->setMax((setting)((BaseHP/2.f) + HP->getMax())); //inner brackets are done first.
 		HP->increase((setting)(BaseHP / 2.f));

@@ -1,6 +1,8 @@
 #pragma once
 #include "Stat_Type.h"
+#include <cstdint>
 // class to inherit
+typedef std::uint16_t stats;
 class statblock
 {
 	stats damage;				//private variables

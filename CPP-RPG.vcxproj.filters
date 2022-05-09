@@ -20,25 +20,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HP.h">
+    <ClInclude Include="Worldsetting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Stat_Type.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="knight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Stat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Mage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Preist.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Levelling.h">
+    <ClInclude Include="Playercharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <cstdint>  //including cstdint to allow unassigned integers
 
 // typedef is used to create a new name using an exsiting data type. this will allow me to use "hptypes" as a data type through out the code.

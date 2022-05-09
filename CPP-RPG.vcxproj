@@ -142,13 +142,10 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HP.h" />
-    <ClInclude Include="Levelling.h" />
-    <ClInclude Include="Mage.h" />
-    <ClInclude Include="Preist.h" />
+    <ClInclude Include="Worldsetting.h" />
+    <ClInclude Include="Playercharacter.h" />
     <ClInclude Include="Stat.h" />
     <ClInclude Include="Stat_Type.h" />
-    <ClInclude Include="knight.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,15 +2,15 @@
 #include "playercharacter.h"
 int main()
 {
-	player p1(new knight());
+	player p1(new Mage());
 
-	for (int i = 0; i < 1; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		std::cout
-			<< p1.getClassName()
-			<< "Knight" << " Level " << p1.getCurrentlevel() << '\n'
-			<< "- EXP:" << p1.getCurrentEXP() << "/" << p1.getxpforlevelup() << '\n'
-			<< "- Max HP:" << p1.getMaxhp() << '\n'
+			<< p1.getClassname()
+			<< " Level " << p1.getCurrentlevel() << '\n'
+			<< "- EXP:" << p1.getcurrentEXP() << '/' << p1.getxpforlevelup() << '\n'
+			<< "- HP:" << p1.getCurrentHP() << '/' << p1.getMaxHP() <<'\n'
 			<< "- Damage:" << p1.getdamage() << '\n'
 			<< "- Inteligence:" << p1.getinteligence() << '\n';
 			p1.EXPgain(100u);

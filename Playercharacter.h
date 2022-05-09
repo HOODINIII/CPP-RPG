@@ -88,7 +88,8 @@ private:
 
 	void levellingup() override						//activates pure virtual level function in "levelling.h" to change the stats of the characters as they increase in level.
 	{
-		HP->setMax((setting)((BaseHP/2.5f) + HP->getMax())); //inner brackets are done first.
+		HP->setMax((setting)((BaseHP/2.f) + HP->getMax())); //inner brackets are done first.
+		HP->increase((setting)(BaseHP / 2.f));
 		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
 	}
 };
@@ -115,7 +116,8 @@ public:
 private:
 	void levellingup() override
 	{
-		HP->setMax((setting)((BaseHP/2.5f) + HP->getMax()));
+		HP->setMax((setting)((BaseHP/2.f) + HP->getMax()));
+		HP->increase((setting)(BaseHP / 2.f));
 		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
 	}
 };
@@ -142,6 +144,7 @@ private:
 	void levellingup() override
 	{
 		HP->setMax((setting)((BaseHP/2.f) + HP->getMax()));
+		HP->increase((setting)(BaseHP / 2.f));
 		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
 	}
 };
@@ -155,5 +158,19 @@ public:
 	player() = delete;
 	player(Playercharacter* pc) : pcclass(pc)
 	{	}
-	std::string getClassname() { pcclass->getClassname(); }
+	~player() { delete pcclass; pcclass = nullptr; } // if players want to change their character they can delete the player class and reset it with different character.
+	std::string getClassname() { return pcclass->getClassname(); }
+	Levels getCurrentlevel() { return pcclass->getCurrentlevel(); }
+	experience getcurrentEXP() { return pcclass->getCurrentEXP(); }
+	experience getxpforlevelup() { return pcclass->getxpforlevelup(); }
+	setting getCurrentHP() { return pcclass->HP->getCurrent(); }
+	setting getMaxHP() { return pcclass->HP->getMax(); }
+	stats getdamage() { return pcclass->getdamage(); }
+	stats getinteligence() { return pcclass->getinteligence(); }
+	void EXPgain(experience amt) { return pcclass->EXPgain(amt); }
+	void damagetaken(setting amt) { return pcclass->HP->reduce(amt); }
+	void healing(setting amt) { return pcclass->HP->increase(amt); }
+
+
+
 };

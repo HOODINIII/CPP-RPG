@@ -5,6 +5,7 @@
 typedef std::uint16_t stats;
 class statblock
 {
+private:
 	stats damage;				//private variables
 	stats inteligence;
 	stats energy;

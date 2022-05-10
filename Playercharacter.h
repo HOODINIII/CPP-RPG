@@ -1,16 +1,16 @@
 #pragma once
 #include "Stat.h"
 #include <cstdint>
+#include <memory>
 #include <string>
 #include "Worldsetting.h"
-#include <vector>
 typedef std::uint64_t experience;
 typedef std::uint16_t Levels;
 class Playercharacter : public statblock
 {
 public:
 	static const experience level2at = 100u; // xp required at level 2, xp require at level 3 with times this by 2 see below.
-	Playercharacter() : statblock(0u, 0u, 0u, 0u)
+	Playercharacter() : statblock(0u, 0u)
 	{
 		Currentlevel = 1u;
 		CurrentEXP = 0u;
@@ -42,7 +42,7 @@ public:
 
 	virtual void levellingup() = 0; // pure virtual functions allows the behaviour of the function to be changed in the derived classes.
 	virtual std::string getClassname() = 0;
-	std::unique_ptr<Worldsetting> HP;
+	std::unique_ptr<Worldsetting> HP; 
 
 protected:
 	int Maxlevels;
@@ -65,23 +65,20 @@ protected:
 	}
 };
 
-#define LEVELLING HP->setMax(BaseHP); HP->increase(BaseHP); inccreasestats(Basedmg, Baseintel, Baseeng, Basemanapool); //using define macro so that we can use this code in any new classes without having to write up more code
-//define macro for levelling up didnt end up working and would not solve no mater what I tried so I reverted to the previous code. hope to fix it in future.
 class knight :public Playercharacter
 {
 public:
 	static const setting BaseHP = 100u;				//using static constant to only intentiate once no matter the number of knights.
 	static const stats Basedmg = 60u;					// knights will spawn with hp of 100.
 	static const stats Baseintel = 20u;
-	static const stats Baseeng = 100u;
-	static const stats Basemanapool = 0u;
 
 
-	knight() : Playercharacter()
+	knight() : Playercharacter()			 //each knight will start with similar stats
 	{
-		LEVELLING;
-	}
-		
+		HP->setMax(BaseHP);
+		HP->increase(BaseHP);
+		inccreasestats(Basedmg, Baseintel);
+	}	
 
 	std::string getClassname() override //make sure to name them right the next time so you dont have to spend time looking for errors. :(
 	{
@@ -89,11 +86,10 @@ public:
 	}
 private:
 
-	void levellingup() override					
+	void levellingup() override						//activates pure virtual level function in "levelling.h" to change the stats of the characters as they increase in level.
 	{
-		HP->setMax((setting)((BaseHP/2.f) + HP->getMax())); //inner brackets are done first.
-		HP->increase((setting)(BaseHP / 2.f));
-		inccreasestats((stats)(Basedmg + 1u / 2.f),(stats)((Baseintel + 1u) / 2.f),(stats)(Baseeng + 1u / 2.f),(stats)(Basemanapool + 1u / 2.f));
+		HP->setMax((setting)((BaseHP/2.5f) + HP->getMax())); //inner brackets are done first.
+		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
 	}
 };
 
@@ -103,13 +99,13 @@ public:
 	static const setting BaseHP = 100u;				//using static constant to only intentiate once no matter the number of Mage.
 	static const stats Basedmg = 50u;					// Mage will spawn with hp of 100.
 	static const stats Baseintel = 50u;
-	static const stats Baseeng = 0u;
-	static const stats Basemanapool = 100u;
 
 
-	Mage() : Playercharacter()
+	Mage() :Playercharacter()	//each Mage will start with similar stats
 	{
-		LEVELLING;
+		HP->setMax(BaseHP);
+		HP->increase(BaseHP);
+		inccreasestats(Basedmg, Baseintel);
 	}
 
 	std::string getClassname() override
@@ -119,11 +115,9 @@ public:
 private:
 	void levellingup() override
 	{
-		HP->setMax((setting)((BaseHP/2.f) + HP->getMax()));
-		HP->increase((setting)(BaseHP / 2.f));
-		inccreasestats((stats)(Basedmg + 1u / 2.f),(stats)((Baseintel + 1u) / 2.f),(stats)(Baseeng + 1u / 2.f),(stats)((Basemanapool + 1u) / 2.f));
+		HP->setMax((setting)((BaseHP/2.5f) + HP->getMax()));
+		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
 	}
-
 };
 
 class Preist :public Playercharacter
@@ -132,12 +126,12 @@ public:
 	static const setting BaseHP = 100u;				//using static constant to only intentiate once no matter the number of Preist.
 	static const stats Basedmg = 10u;					// Preist will spawn with hp of 100.
 	static const stats Baseintel = 70u;
-	static const stats Baseeng = 20u;
-	static const stats Basemanapool = 80u;
 
-	Preist() : Playercharacter()
+	Preist() :Playercharacter()	//each Preist will start with similar stats
 	{
-		LEVELLING;
+		HP->setMax(BaseHP);
+		HP->increase(BaseHP);
+		inccreasestats(Basedmg, Baseintel);
 	}
 
 	std::string getClassname() override
@@ -148,8 +142,7 @@ private:
 	void levellingup() override
 	{
 		HP->setMax((setting)((BaseHP/2.f) + HP->getMax()));
-		HP->increase((setting)(BaseHP / 2.f));
-		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f), (stats)(Baseeng + 1u / 2.f), (stats)((Basemanapool + 1u) / 2.f));
+		inccreasestats((stats)(Basedmg + 1u / 2.f), (stats)((Baseintel + 1u) / 2.f));
 	}
 };
 
@@ -171,12 +164,9 @@ public:
 	setting getMaxHP() { return pcclass->HP->getMax(); }
 	stats getdamage() { return pcclass->getdamage(); }
 	stats getinteligence() { return pcclass->getinteligence(); }
-	stats getmanapool() { return pcclass->getmanapool(); }
-	stats getenergy() { return pcclass->getenergy(); }
+	//stats getmanapool() { return pcclass->getmanapool(); }
+	//stats getenergy() { return pcclass->getenergy(); }
 	void EXPgain(experience amt) { return pcclass->EXPgain(amt); }
 	void damagetaken(setting amt) { return pcclass->HP->reduce(amt); }
 	void healing(setting amt) { return pcclass->HP->increase(amt); }
-
-
-
 };
